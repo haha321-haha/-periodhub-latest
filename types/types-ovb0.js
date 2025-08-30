@@ -1,0 +1,36 @@
+const withNextIntl = require('next-intl/plugin')('./i18n.ts');
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  // 图片优化配置
+  images: {
+    unoptimized: true,
+    domains: ['images.unsplash.com', 'placehold.co'],
+  },
+
+  reactStrictMode: true,
+
+  // 编译优化
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+
+  // PWA 和性能优化
+  poweredByHeader: false,
+
+  // TypeScript 和 ESLint 配置
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+
+  // 环境变量
+  env: {
+    NEXT_PUBLIC_BASE_URL: process.env.NEXT_PUBLIC_BASE_URL || 'https://periodhub.health',
+  },
+};
+
+module.exports = withNextIntl(nextConfig);
